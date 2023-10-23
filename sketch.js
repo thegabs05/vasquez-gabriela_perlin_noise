@@ -1,34 +1,27 @@
-var inc = 0.01;
-var start = 0;
-
-let xoof = 0.0;
+let noiseTime = 0;
+let noiseTam = 10;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  background(170, 25, 236);
-  stroke(255);
-  noFill();
-  beginShape();
-  var xoff = start;
+  //let verde = map(mouseX, 0, windowWidth, 0, 255);
+  //stroke(255, verde, 0);
+  //strokeWeight(4);
+  //line(mouseX, 0, mouseX, windowHeight);
+  //background(255);
+  let posX = map(noise(noiseTime), 0, 1, 0, windowWidth);
+  let posY = map(noise(noiseTime + 1), 0, 1, 0, windowHeight);
 
-  for (var x = 0; x < windowWidth; x++) {
-    stroke(255, random(150, 200, 120), 255, 85);
-    strokeWeight(random(10, 15));
-    var y = noise(xoff) * windowHeight;
-    vertex(x, y);
+  let tam = map(noise(noiseTam + 10), 0, 1, 5, 50);
 
-    xoff += inc;
-  }
+  noiseTime += 0.006;
+  noiseTam += 0.1;
 
-  xoof = xoof + 0.01;
-  let n = noise(xoof) * windowWidth;
-  //fill(0);
-  circle(n, 100, 12);
-
-  endShape();
-  start += inc;
-  //noloop();
+  fill(255);
+  //noStroke();
+  stroke(0, 50);
+  strokeWeight(4);
+  circle(posX, posY, tam);
 }
