@@ -3,6 +3,7 @@ let noiseTam = 10;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  background(0);
 }
 
 function draw() {
@@ -13,15 +14,19 @@ function draw() {
   //background(255);
   let posX = map(noise(noiseTime), 0, 1, 0, windowWidth);
   let posY = map(noise(noiseTime + 1), 0, 1, 0, windowHeight);
-
-  let tam = map(noise(noiseTam + 10), 0, 1, 5, 50);
+  let tam = map(noise(noiseTam), 0, 1, 15, 75);
 
   noiseTime += 0.006;
-  noiseTam += 0.1;
+  noiseTam += 0.01;
 
-  fill(255);
+  let posX2 = map(noise(noiseTime), 0, 1, windowWidth, 0);
+  let posY2 = map(noise(noiseTime + 1), 0, 1, 0, windowHeight);
+  let tam2 = map(noise(noiseTam + 10), 0, 1, 15, 75);
+
+  fill(0);
   //noStroke();
-  stroke(0, 50);
-  strokeWeight(4);
+  stroke(255);
+  strokeWeight(3);
   circle(posX, posY, tam);
+  circle(posX2, posY2, tam2);
 }
